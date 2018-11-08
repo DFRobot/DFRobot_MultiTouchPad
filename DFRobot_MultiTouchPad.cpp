@@ -1,4 +1,4 @@
-#include "dfrobot_multi_touch_pad.h"
+#include "DFRobot_MultiTouchPad.h"
 
 struct touch_fun * touch_func_list[30];
 
@@ -8,7 +8,7 @@ DFRobot_MultiTouchPad::DFRobot_MultiTouchPad()
   openedKeyTime = 0;
   isOpenedKeyOpened = false;
   touchFuncLen = 0;
-  openedKey = 0x10; //默认为按键0
+  openedKey = 0x10; 
   pinMode(13,OUTPUT);
 }
 
@@ -16,7 +16,7 @@ int DFRobot_MultiTouchPad::setOpenedKeyTime(int time)
 {
   if(time > 0){
     openedKeyTime = time;
-    isOpenedKeyOpened = false;//等0按键按了3秒后，再打开开关，为true
+    isOpenedKeyOpened = false;
     return 1;
   }else{
     Serial.println("set time must greater than 0.");

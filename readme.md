@@ -2,7 +2,7 @@
 
 Multi touch pad has five buttons on the multi-touch pad: 0, 1, 2, 3, 4.<br>
 The screen has 29 button combinations. Users can set callback for the single button,<br>
-double bottons and triple buttons combinations to realize different functions.<br>
+double buttons and triple buttons combinations to realize different functions.<br>
 The switch  mode, time and button can be set by users.<br>
 
 
@@ -31,7 +31,7 @@ Read the nubmer of the pressed butoon combination from multi-touch pad.
 2. Set callback for the single button, double buttons and triple buttons combinations<br>
 3. Switch mode can be set<br>
 4. Switch time can be set<br>
-5. Switch botton can be set<br>
+5. Switch button can be set<br>
 
 ## Installation
 
@@ -106,4 +106,4 @@ Arduino uno |       √      |             |            |
 
 ## Credits
 
-Written by DFRobot, 2018. (Welcome to our [website](https://www.dfrobot.com/))
+Written by DFRobot_JH, 2018. (Welcome to our [website](https://www.dfrobot.com/))

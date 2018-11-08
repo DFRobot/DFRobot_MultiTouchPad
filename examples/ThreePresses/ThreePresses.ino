@@ -12,11 +12,11 @@
  *  Copyright   [DFRobot](http://www.dfrobot.com), 2018
  *  Copyright   GNU Lesser General Public License
  * 
- *  version V1.0
- *  date 2018-11-2
+ *  version V1.1
+ *  date 2018-11-8
  */
 
-#include "dfrobot_multi_touch_pad.h"
+#include "DFRobot_MultiTouchPad.h"
 DFRobot_MultiTouchPad multiTouchPad;
 
 void threeble_touch1()
