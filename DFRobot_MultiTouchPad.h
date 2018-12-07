@@ -99,6 +99,7 @@ private:
   bool isOpenedKeyOpened;
   uint8_t openedKey;
   uint8_t openedKeyTime;
+  bool openedKeyThouchedFlag;
 
   uint8_t touchFuncLen;
 };

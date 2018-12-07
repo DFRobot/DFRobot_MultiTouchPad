@@ -7,8 +7,9 @@ DFRobot_MultiTouchPad::DFRobot_MultiTouchPad()
   readAnalogPin = 0;
   openedKeyTime = 0;
   isOpenedKeyOpened = false;
+  openedKeyThouchedFlag = false;
   touchFuncLen = 0;
-  openedKey = 0x10; 
+  openedKey = 0x10; //默认为按键0
   pinMode(13,OUTPUT);
 }
 
@@ -16,7 +17,7 @@ int DFRobot_MultiTouchPad::setOpenedKeyTime(int time)
 {
   if(time > 0){
     openedKeyTime = time;
-    isOpenedKeyOpened = false;
+    isOpenedKeyOpened = false;//等0按键按了3秒后，再打开开关，为true
     return 1;
   }else{
     Serial.println("set time must greater than 0.");
@@ -124,6 +125,10 @@ int DFRobot_MultiTouchPad::hasSetOpenedKeyTimeRead()
           allnotouchNum += 1;
           if(notouchNum >= 10){
             allnotouchNum = 0;
+            if(openedKeyThouchedFlag){
+              openedKeyThouchedFlag = false;
+              return openedKey;
+            }
             runTouchedCallback(openedKey);
             return openedKey;  
           }
@@ -135,11 +140,16 @@ int DFRobot_MultiTouchPad::hasSetOpenedKeyTimeRead()
         }
       }
       if(allnotouchNum/alltouchNum < 0.2){
+        if(openedKeyThouchedFlag){
+          return openedKey;
+        }
         Serial.println("openKey close");
         isOpenedKeyOpened = false;
         digitalWrite(13, LOW); 
+        openedKeyThouchedFlag = true;
         return openedKey;
       }else{
+        openedKeyThouchedFlag = false;
         return -1;  
       }
     }else{
@@ -163,6 +173,10 @@ int DFRobot_MultiTouchPad::hasSetOpenedKeyTimeRead()
           allnotouchNum += 1;
           if(notouchNum >= 10){
             allnotouchNum = 0;
+            if(openedKeyThouchedFlag){
+              openedKeyThouchedFlag = false;
+              return openedKey;
+            }
             Serial.println("Please touch more time.");
             return 0xFF;  
           }
@@ -172,11 +186,16 @@ int DFRobot_MultiTouchPad::hasSetOpenedKeyTimeRead()
         }
       }
       if(allnotouchNum/alltouchNum < 0.2){
+        if(openedKeyThouchedFlag){
+          return openedKey;
+        }
         Serial.println("openKey open");
         isOpenedKeyOpened = true;
         digitalWrite(13, HIGH); 
+        openedKeyThouchedFlag = true;
         return openedKey;
       }else{
+        openedKeyThouchedFlag = false;
         return -1;  
       }
     }else{
